@@ -1,0 +1,112 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/img" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/musicImage"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="180dp"
+            app:srcCompat="@drawable/circle" />
+
+        <ImageView
+            android:id="@+id/musicImage2"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="195dp"
+            app:srcCompat="@drawable/baseline_audiotrack_24" />
+
+        <TextView
+            android:id="@+id/songName"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_below="@id/musicImage2"
+            android:layout_marginTop="54dp"
+            android:layout_centerHorizontal="true"
+            android:text="Song Name"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/songAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_below="@id/songName"
+            android:layout_marginTop="8dp"
+            android:layout_centerHorizontal="true"
+            android:text="Song Author"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:thumbTint="@color/white"
+            android:layout_below="@+id/songAuthor"
+            android:layout_marginTop="42dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/seekBar"
+            android:layout_marginTop="32dp"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:id="@+id/playPrevious"
+                android:onClick="previous"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="Hi"
+                android:background="@drawable/circle"
+                app:srcCompat="@drawable/baseline_skip_previous_24" />
+
+            <ImageView
+                android:id="@+id/playButton"
+                android:onClick="play"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="Hi"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@android:dimen/app_icon_size"
+                android:background="@drawable/circle"
+                app:srcCompat="@drawable/baseline_play_arrow_24" />
+
+            <ImageView
+                android:id="@+id/playNext"
+                android:onClick="next"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="Hi"
+                android:layout_marginLeft="@android:dimen/app_icon_size"
+                android:background="@drawable/circle"
+                app:srcCompat="@drawable/baseline_skip_next_24" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
