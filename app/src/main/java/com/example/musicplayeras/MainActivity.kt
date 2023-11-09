@@ -143,6 +143,8 @@ class MainActivity : AppCompatActivity() {
         binding.seekBar.max = mediaPlayer.duration
         mediaPlayer.start()
 
+        binding.playButton.setImageResource(R.drawable.baseline_pause_24)
+
         mediaPlayer.setOnCompletionListener(OnCompletionListener {
             setNextTrack()
         })
@@ -161,6 +163,8 @@ class MainActivity : AppCompatActivity() {
             mediaPlayer.stop()
         }
         songNames()
+
+        binding.playButton.setImageResource(R.drawable.baseline_pause_24)
 
         mediaPlayer = MediaPlayer.create(applicationContext, songs[currentPosition])
 
