@@ -18,9 +18,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var runnable: Runnable
     private lateinit var mediaPlayer: MediaPlayer
+
+    private var songs =  arrayListOf<Int>()
     private var handler = Handler()
     private var currentPosition = 0
-    private lateinit var songs: ArrayList<Int>
 
     companion object {
         fun performAction(context: Context, action: String) {
@@ -40,42 +41,43 @@ class MainActivity : AppCompatActivity() {
         startIntent.action = Constants.ACTION_STARTFOREGROUND
         startService(startIntent)
 
-        songs = arrayListOf<Int>()
         addTracks()
 
         songNames()
         mediaPlayer = MediaPlayer.create(this, songs[currentPosition])
 
-        binding.seekBar.max = mediaPlayer.duration
-        binding.seekBar.progress = 0
+        with(binding){
+            seekBar.max = mediaPlayer.duration
+            seekBar.progress = 0
 
-        binding.playButton.setOnClickListener {
-            playOrStopTrack()
-        }
+            playButton.setOnClickListener {
+                playOrStopTrack()
+            }
 
-        binding.playPrevious.setOnClickListener {
-            setPreviousTrack()
-        }
+            playPrevious.setOnClickListener {
+                setPreviousTrack()
+            }
 
-        binding.playNext.setOnClickListener {
-            setNextTrack()
-        }
+            playNext.setOnClickListener {
+                setNextTrack()
+            }
 
-        binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(p0: SeekBar?, position: Int, changed: Boolean) {
-                if (changed) {
-                    mediaPlayer.seekTo(position)
+            seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(p0: SeekBar?, position: Int, changed: Boolean) {
+                    if (changed) {
+                        mediaPlayer.seekTo(position)
+                    }
                 }
-            }
 
-            override fun onStartTrackingTouch(p0: SeekBar?) {
+                override fun onStartTrackingTouch(p0: SeekBar?) {
 
-            }
+                }
 
-            override fun onStopTrackingTouch(p0: SeekBar?) {
+                override fun onStopTrackingTouch(p0: SeekBar?) {
 
-            }
-        })
+                }
+            })
+        }
 
         mediaPlayer.setOnCompletionListener(OnCompletionListener {
             setNextTrack()
@@ -176,6 +178,14 @@ class MainActivity : AppCompatActivity() {
             mediaPlayer.stop()
             binding.playButton.setImageResource(R.drawable.baseline_play_arrow_24)
         }
+    }
+
+    override fun onDestroy() {
+        val stopIntent = Intent(this, RunningService::class.java)
+        stopIntent.action = Constants.ACTION_STOPFOREGROUND
+        startService(stopIntent)
+        mediaPlayer.stop()
+        super.onDestroy()
     }
 }
 

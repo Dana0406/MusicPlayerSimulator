@@ -10,5 +10,4 @@ object Constants {
     const val ACTION_STOPFOREGROUND = "stop foreground"
 
     const val FOREGROUND_SERVICE = 101
-
 }

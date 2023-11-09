@@ -20,6 +20,5 @@ class RunningApp: Application() {
             notificationManager.createNotificationChannel(channel)
         }
 
-
     }
 }
